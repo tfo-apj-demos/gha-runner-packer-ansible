@@ -33,7 +33,7 @@ RUN sudo wget --quiet "https://releases.hashicorp.com/terraform/${TERRAFORM_VERS
     && sudo rm terraform_${TERRAFORM_VERSION}_linux_amd64.zip
 
 # Vault
-RUN wget --quiet https://releases.hashicorp.com/vault/${VAULT_VERSION}/vault_${VAULT_VERSION}_linux_amd64.zip  \
-    && sudo unzip terraform_${VAULT_VERSION}_linux_amd64.zip \
+RUN sudo wget --quiet "https://releases.hashicorp.com/vault/${VAULT_VERSION}/vault_${VAULT_VERSION}_linux_amd64.zip" \
+    && sudo unzip vault_${VAULT_VERSION}_linux_amd64.zip \
     && sudo mv vault /usr/local/bin \
     && sudo rm vault_${VAULT_VERSION}_linux_amd64.zip
