@@ -7,7 +7,9 @@ ENV VAULT_VERSION=1.15.0
 RUN sudo apt-get update \
 && sudo apt-get install -y make \
 && sudo apt-get install -y jq \
-&& sudo apt-get install -y wget
+&& sudo apt-get install -y wget \
+&& sudo apt-get install -y git
+
 
 # AWS CLI
 RUN sudo curl https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip -o awscliv2.zip \
