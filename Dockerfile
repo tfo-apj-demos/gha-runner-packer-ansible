@@ -8,7 +8,8 @@ RUN sudo apt-get update \
 && sudo apt-get install -y make \
 && sudo apt-get install -y jq \
 && sudo apt-get install -y wget \
-&& sudo apt-get install -y git
+&& sudo apt-get install -y git \
+&& sudo apt-get install -y sudo
 
 
 # AWS CLI
