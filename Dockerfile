@@ -14,7 +14,7 @@ RUN sudo apt-get update \
 
 # allow ansible local rsa ssh connection
 RUN sudo mkdir /home/runner/.ssh/
-RUN sudo tee /home/runner/.config <<EOF
+RUN sudo tee /home/runner/.ssh/config <<EOF
 Host *
    StrictHostKeyChecking no
    UserKnownHostsFile=/dev/null
