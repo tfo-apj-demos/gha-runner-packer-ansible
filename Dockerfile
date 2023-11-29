@@ -9,8 +9,17 @@ RUN sudo apt-get update \
 && sudo apt-get install -y jq \
 && sudo apt-get install -y wget \
 && sudo apt-get install -y git \
-&& sudo apt-get install -y sudo
+&& sudo apt-get install -y coreutils
 
+# allow ansible local rsa ssh connection
+RUN sudo mkdir /home/runner/.ssh/
+RUN sudo tee /home/runner/.config <<EOF
+Host *
+   StrictHostKeyChecking no
+   UserKnownHostsFile=/dev/null
+   HostKeyAlgorithms ssh-rsa,ssh-ed25519,ecdsa-sha2-nistp384
+   PubkeyAcceptedKeyTypes +ssh-rsa,ecdsa-sha2-nistp256,ssh-ed25519,ecdsa-sha2-nistp384
+EOF
 
 # AWS CLI
 RUN sudo curl https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip -o awscliv2.zip \
