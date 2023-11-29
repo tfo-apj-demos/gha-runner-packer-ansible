@@ -9,6 +9,7 @@ RUN sudo apt-get update \
 && sudo apt-get install -y jq \
 && sudo apt-get install -y wget \
 && sudo apt-get install -y git \
+&& sudo apt-get install -y sudo \
 && sudo apt-get install -y coreutils
 
 # allow ansible local rsa ssh connection
