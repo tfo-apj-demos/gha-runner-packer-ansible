@@ -6,3 +6,8 @@ Custom docker image for self-hosted github action using arc controller
 docker build --platform linux/amd64 -t tfoapjdemos/gha-runner-packer-ansible:latest .
 
 docker push tfoapjdemos/gha-runner-packer-ansible:latest
+
+
+# reload pods
+
+kubectl -n actions-runner-system delete pods -l runner-deployment-name=org-runner
