@@ -3,7 +3,7 @@ FROM summerwind/actions-runner:ubuntu-22.04
 ENV DEBIAN_FRONTEND=noninteractive
 ENV TERRAFORM_VERSION=1.6.4
 ENV VAULT_VERSION=1.15.0
-#ENV PSModulePath=/usr/local/share/powershell/Modules
+ENV PSModulePath="/home/runner/.local/share/powershell/Modules:/usr/local/share/powershell/Modules:/opt/microsoft/powershell/7/Modules"
 
 RUN sudo apt-get update \
 && sudo apt-get install -y make \
