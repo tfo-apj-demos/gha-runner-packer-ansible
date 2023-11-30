@@ -64,4 +64,4 @@ RUN sudo wget -q https://packages.microsoft.com/config/ubuntu/22.04/packages-mic
     && sudo apt-get install -y powershell
 
 RUN sudo pwsh -Command {Set-PSRepository -Name PSGallery -InstallationPolicy Trusted}
-RUN sudo -E pwsh -Command {Install-Module VMware.PowerCLI -scope AllUsers -force -AllowClobber}
+RUN sudo -E -u runner pwsh -Command {Install-Module VMware.PowerCLI -scope AllUsers -force -AllowClobber}
