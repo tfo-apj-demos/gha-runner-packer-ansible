@@ -63,5 +63,7 @@ RUN sudo wget -q https://packages.microsoft.com/config/ubuntu/22.04/packages-mic
     && sudo apt-get update \
     && sudo apt-get install -y powershell
 
-RUN sudo pwsh -Command {Set-PSRepository -Name PSGallery -InstallationPolicy Trusted}
-RUN sudo -E -u runner pwsh -Command {Install-Module VMware.PowerCLI -scope AllUsers -force -AllowClobber}
+#RUN sudo pwsh -Command {Set-PSRepository -Name PSGallery -InstallationPolicy Trusted}
+#RUN sudo -E pwsh -Command {'Install-Module VMware.PowerCLI -scope AllUsers -force -AllowClobber -confirm:$false'}
+RUN sudo wget -q https://vdc-download.vmware.com/vmwb-repository/dcr-public/4ab0abc0-b6ee-4cff-9b43-1d5038daab94/41f1195e-67d1-4d3e-bbcf-950d803c30d7/VMware-PowerCLI-13.2.0-22746353.zip \
+    && sudo unzip VMware-PowerCLI-13.2.0-22746353.zip -d /opt/microsoft/powershell/7/Modules
