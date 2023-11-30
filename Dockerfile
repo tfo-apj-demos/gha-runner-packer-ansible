@@ -57,3 +57,5 @@ RUN sudo wget -q https://packages.microsoft.com/config/ubuntu/22.04/packages-mic
     && sudo rm packages-microsoft-prod.deb \
     && sudo apt-get update \
     && sudo apt-get install -y powershell
+
+RUN sudo pwsh -Command {Install-Module -Name VMware.PowerCLI -Force}
