@@ -3,6 +3,7 @@ FROM summerwind/actions-runner:ubuntu-22.04
 ENV DEBIAN_FRONTEND=noninteractive
 ENV TERRAFORM_VERSION=1.6.4
 ENV VAULT_VERSION=1.15.0
+#ENV PSModulePath=/usr/local/share/powershell/Modules
 
 RUN sudo apt-get update \
 && sudo apt-get install -y make \
@@ -51,6 +52,10 @@ RUN sudo wget --quiet "https://releases.hashicorp.com/vault/${VAULT_VERSION}/vau
     && sudo mv vault /usr/local/bin \
     && sudo rm vault_${VAULT_VERSION}_linux_amd64.zip
 
+RUN sudo mkdir -p /usr/local/share/powershell/Modules
+RUN sudo mkdir -p /home/runner/.local/share/powershell/Modules
+RUN sudo mkdir -p /opt/microsoft/powershell/7/Modules
+
 # Powershell 
 RUN sudo wget -q https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb \
     && sudo dpkg -i packages-microsoft-prod.deb \
@@ -58,4 +63,5 @@ RUN sudo wget -q https://packages.microsoft.com/config/ubuntu/22.04/packages-mic
     && sudo apt-get update \
     && sudo apt-get install -y powershell
 
-RUN sudo -E pwsh -Command {Install-Module VMware.PowerCLI -scope AllUsers -force}
+RUN sudo pwsh -Command {Set-PSRepository -Name PSGallery -InstallationPolicy Trusted}
+RUN sudo -E pwsh -Command {Install-Module VMware.PowerCLI -scope AllUsers -force -AllowClobber}
