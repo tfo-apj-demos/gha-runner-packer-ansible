@@ -50,3 +50,10 @@ RUN sudo wget --quiet "https://releases.hashicorp.com/vault/${VAULT_VERSION}/vau
     && sudo unzip vault_${VAULT_VERSION}_linux_amd64.zip \
     && sudo mv vault /usr/local/bin \
     && sudo rm vault_${VAULT_VERSION}_linux_amd64.zip
+
+# Powershell 
+RUN wget -q https://packages.microsoft.com/config/ubuntu/$VERSION_ID/packages-microsoft-prod.deb \
+    && sudo dpkg -i packages-microsoft-prod.deb \
+    && rm packages-microsoft-prod.deb \
+    && sudo apt-get update \
+    && sudo apt-get install -y powershell
