@@ -70,4 +70,4 @@ RUN sudo wget -q https://vdc-download.vmware.com/vmwb-repository/dcr-public/4ab0
 
 RUN sudo mkdir -p /home/runner/.local/share/VMware
 RUN sudo mkdir -p /home/runner/.local/share/VMware/PowerCLI
-#RUN sudo chmod 777 /home/runner/.local/share/VMware
+RUN sudo chown -R runner: /home/runner/.local/share/VMware/PowerCLI
