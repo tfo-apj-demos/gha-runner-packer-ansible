@@ -39,6 +39,8 @@ RUN sudo curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
 RUN sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
 RUN sudo apt-get update && sudo apt-get install -y packer
 RUN sudo apt-get update && sudo apt-get install -y gnupg software-properties-common apt-transport-https
+RUN sudo sudo apt-add-repository universe
+RUN sudo apt-get install xorriso
 
 # Terraform
 RUN sudo wget --quiet "https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip" \
@@ -63,6 +65,7 @@ RUN sudo wget -q https://packages.microsoft.com/config/ubuntu/22.04/packages-mic
     && sudo apt-get update \
     && sudo apt-get install -y powershell
 
+
 #RUN sudo pwsh -Command {Set-PSRepository -Name PSGallery -InstallationPolicy Trusted}
 #RUN sudo -E pwsh -Command {'Install-Module VMware.PowerCLI -scope AllUsers -force -AllowClobber -confirm:$false'}
 RUN sudo wget -q https://vdc-download.vmware.com/vmwb-repository/dcr-public/4ab0abc0-b6ee-4cff-9b43-1d5038daab94/41f1195e-67d1-4d3e-bbcf-950d803c30d7/VMware-PowerCLI-13.2.0-22746353.zip \
@@ -71,3 +74,6 @@ RUN sudo wget -q https://vdc-download.vmware.com/vmwb-repository/dcr-public/4ab0
 RUN sudo mkdir -p /home/runner/.local/share/VMware
 RUN sudo mkdir -p /home/runner/.local/share/VMware/PowerCLI
 RUN sudo chown -R runner: /home/runner/.local/share/VMware/PowerCLI
+RUN sudo chown -R runner: /home/runner/.local/share/VMware
+
+RUN sudo pwsh -Command "Set-PowerCLIConfiguration -Scope AllUsers -ParticipateInCEIP $false -Verbose -NoProfile"
