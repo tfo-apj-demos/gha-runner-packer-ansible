@@ -39,7 +39,7 @@ RUN sudo curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
 RUN sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
 RUN sudo apt-get update && sudo apt-get install -y packer
 RUN sudo apt-get update && sudo apt-get install -y gnupg software-properties-common apt-transport-https
-RUN sudo sudo apt-add-repository universe
+RUN sudo apt-add-repository universe
 RUN sudo apt-get install xorriso
 
 # Terraform
