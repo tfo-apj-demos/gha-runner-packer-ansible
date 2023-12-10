@@ -1,8 +1,8 @@
 FROM summerwind/actions-runner:ubuntu-22.04
 
 ENV DEBIAN_FRONTEND=noninteractive
-ENV TERRAFORM_VERSION=1.6.4
-ENV VAULT_VERSION=1.15.0
+ENV TERRAFORM_VERSION=1.6.5
+ENV VAULT_VERSION=1.15.4
 ENV PSModulePath="/home/runner/.local/share/powershell/Modules:/usr/local/share/powershell/Modules:/opt/microsoft/powershell/7/Modules"
 
 RUN sudo apt-get update \
@@ -40,7 +40,7 @@ RUN sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com
 RUN sudo apt-get update && sudo apt-get install -y packer
 RUN sudo apt-get update && sudo apt-get install -y gnupg software-properties-common apt-transport-https
 RUN sudo apt-add-repository universe
-RUN sudo apt-get install xorriso
+RUN sudo apt-get update && sudo apt-get install -y xorriso
 
 # Terraform
 RUN sudo wget --quiet "https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip" \
@@ -75,5 +75,3 @@ RUN sudo mkdir -p /home/runner/.local/share/VMware
 RUN sudo mkdir -p /home/runner/.local/share/VMware/PowerCLI
 RUN sudo chown -R runner: /home/runner/.local/share/VMware/PowerCLI
 RUN sudo chown -R runner: /home/runner/.local/share/VMware
-
-RUN sudo pwsh -Command "Set-PowerCLIConfiguration -Scope AllUsers -ParticipateInCEIP $false -Verbose -NoProfile"
