@@ -42,6 +42,9 @@ RUN sudo apt-get update && sudo apt-get install -y gnupg software-properties-com
 RUN sudo apt-add-repository universe
 RUN sudo apt-get update && sudo apt-get install -y xorriso
 
+# HCP Vault Secrets CLI
+RUN sudo apt install -y vlt
+
 # Terraform
 RUN sudo wget --quiet "https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip" \
     && sudo unzip terraform_${TERRAFORM_VERSION}_linux_amd64.zip \
